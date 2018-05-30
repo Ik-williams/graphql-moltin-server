@@ -5,6 +5,7 @@ type Product {
   description: String!
   status: ActiveStatus!
   price: [ProductPrice]
+  brands: [Brand]
 }
 
 type ProductPrice {

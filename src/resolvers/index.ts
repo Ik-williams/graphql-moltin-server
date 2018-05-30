@@ -1,9 +1,25 @@
 export default {
-  Query: {
-    products: async (parent, args, { Moltin }, info) => {
-      const { data } = await Moltin.Products.All()
+  Product: {
+    brands: async (parent, args, { loaders }) => {
+      if (!parent.relationships || !parent.relationships.brands) {
+        return
+      }
 
-      console.log(info)
+      try {
+        const brandIds = parent.relationships.brands.data.map(b => b.id)
+        console.log(brandIds)
+        const brand = await loaders.brandLoader.loadMany(brandIds)
+
+        return brand
+      } catch (e) {
+        return e
+      }
+    },
+  },
+
+  Query: {
+    products: async (parent, args, { Moltin, loaders }, info) => {
+      const { data } = await Moltin.Products.All()
 
       return data
     },
