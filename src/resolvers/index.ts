@@ -1,15 +1,32 @@
 export default {
   Product: {
-    brands: async (parent, args, { loaders }) => {
-      if (!parent.relationships || !parent.relationships.brands) {
-        return
-      }
+    brands: async ({ relationships }, args, { loaders: { brandLoader } }) => {
+      if (!relationships || !relationships.brands) return
 
       try {
         const brandIds = relationships.brands.data.map(b => b.id)
         const brand = await brandLoader.loadMany(brandIds)
 
         return brand
+      } catch (e) {
+        return e
+      }
+    },
+  },
+
+  Brand: {
+    products: async (
+      { relationships },
+      args,
+      { loaders: { productLoader } },
+    ) => {
+      try {
+        if (!relationships || !relationships.products) return
+
+        const productIds = relationships.products.data.map(p => p.id)
+        const product = await productLoader.loadMany(productIds)
+
+        return product
       } catch (e) {
         return e
       }

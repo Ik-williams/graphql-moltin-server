@@ -8,11 +8,18 @@ const brandLoader = new DataLoader(async brandIds => {
     const { data } = await Moltin.Brands.Get(id)
 
     return data
+  })
+})
 
-    // brandsById.push(brand)
+const productLoader = new DataLoader(async productIds => {
+  return productIds.map(async id => {
+    const { data } = await Moltin.Products.Get(id)
+
+    return data
   })
 })
 
 export default {
   brandLoader,
+  productLoader,
 }
