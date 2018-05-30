@@ -6,9 +6,8 @@ export default {
       }
 
       try {
-        const brandIds = parent.relationships.brands.data.map(b => b.id)
-        console.log(brandIds)
-        const brand = await loaders.brandLoader.loadMany(brandIds)
+        const brandIds = relationships.brands.data.map(b => b.id)
+        const brand = await brandLoader.loadMany(brandIds)
 
         return brand
       } catch (e) {
