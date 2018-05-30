@@ -6,12 +6,18 @@ type Product {
   status: ActiveStatus!
   price: [ProductPrice]
   brands: [Brand]
+  main_image: MainImage
 }
 
 type ProductPrice {
   amount: Int!
   currency: String
   includes_tax: Boolean!
+}
+
+type MainImage {
+  file_name: String
+  href: String
 }
 
 enum ActiveStatus {

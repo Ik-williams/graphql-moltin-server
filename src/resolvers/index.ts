@@ -12,6 +12,24 @@ export default {
         return e
       }
     },
+
+    main_image: async (
+      { relationships },
+      args,
+      { loaders: { mainImageLoader } },
+    ) => {
+      if (!relationships || !relationships.main_image) return
+
+      try {
+        const mainImage = await mainImageLoader.load(
+          relationships.main_image.data.id,
+        )
+
+        return mainImage
+      } catch (e) {
+        return e
+      }
+    },
   },
 
   Brand: {
