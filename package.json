@@ -16,7 +16,6 @@
     "@moltin/sdk": "^3.3.0",
     "dataloader": "^1.4.0",
     "graphql-yoga": "^1.4.3",
-    "lodash": "^4.17.10",
     "node-fetch": "^2.0.0"
   },
   "devDependencies": {
