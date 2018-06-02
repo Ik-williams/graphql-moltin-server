@@ -1,4 +1,5 @@
 import authenticationMutationResolvers from './mutations/authentication'
+import cartMutationResolvers from './mutations/cart'
 
 import cartQueryResolvers from './queries/cart'
 import brandQueryResolvers from './queries/brands'
@@ -9,6 +10,7 @@ export default {
   ...rootQueryResolvers,
   Mutation: {
     ...authenticationMutationResolvers,
+    ...cartMutationResolvers,
   },
   Query: {
     ...brandQueryResolvers,
