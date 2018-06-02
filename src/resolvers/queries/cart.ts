@@ -1,7 +1,7 @@
 export default {
-  cart: async (root, args, { Moltin }) => {
-    const getCart = await Moltin.Cart().Get()
-    const getCartItems = await Moltin.Cart().Items()
+  cart: async (root, { id: cartId }, { Moltin }) => {
+    const getCart = await Moltin.Cart(cartId).Get()
+    const getCartItems = await Moltin.Cart(cartId).Items()
 
     const [{ data: { id } }, { data: items }] = await Promise.all([
       getCart,

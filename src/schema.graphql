@@ -97,7 +97,7 @@ type Query {
   collection(id: ID!): Collection
   categories: [Category]
   category(id: ID!): Category
-  cart: Cart
+  cart(id: ID!): Cart
 }
 
 input CheckoutInput {
@@ -110,5 +110,5 @@ type Mutation {
     clientSecret: String
     grantType: AuthGrantType
   ): AuthenticatePayload
-  addToCart(productId: ID!, cartId: ID): Cart
+  addToCart(productId: ID!, cartId: ID!): Cart
 }
