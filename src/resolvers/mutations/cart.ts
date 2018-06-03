@@ -3,8 +3,8 @@ export default {
     try {
       await Moltin.Cart(cartId).AddProduct(productId)
 
-      const getCart = await Moltin.Cart(cartId).Get()
-      const getCartItems = await Moltin.Cart(cartId).Items()
+      const getCart = Moltin.Cart(cartId).Get()
+      const getCartItems = Moltin.Cart(cartId).Items()
 
       const [{ data: { id } }, { data: items }] = await Promise.all([
         getCart,
