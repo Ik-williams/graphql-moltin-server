@@ -66,6 +66,10 @@ type Cart {
   items: [CartItem]
 }
 
+type Order {
+  id: ID!
+}
+
 enum AuthGrantType {
   client_credentials
   implicit
@@ -100,8 +104,36 @@ type Query {
   cart(id: ID!): Cart
 }
 
-input CheckoutInput {
-  cartId: ID!
+input BillingAddress {
+  first_name: String!
+  last_name: String!
+  company_name: String
+  line_1: String!
+  line_2: String
+  city: String
+  postcode: String!
+  county: String!
+  country: String
+}
+
+input ShippingAddress {
+  first_name: String!
+  last_name: String!
+  phone_number: String
+  company_name: String
+  line_1: String!
+  line_2: String
+  city: String
+  postcode: String!
+  county: String!
+  country: String
+  instructions: String
+}
+
+input Customer {
+  id: ID
+  name: String
+  email: String
 }
 
 type Mutation {
@@ -111,4 +143,10 @@ type Mutation {
     grantType: AuthGrantType
   ): AuthenticatePayload
   addToCart(productId: ID!, cartId: ID!): Cart
+  checkoutCart(
+    cartId: ID!
+    customer: Customer!
+    billing: BillingAddress!
+    shipping: ShippingAddress
+  ): Order
 }
