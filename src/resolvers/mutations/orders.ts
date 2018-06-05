@@ -11,7 +11,6 @@ export default {
 
       return order
     } catch (e) {
-      console.log(e)
       return e
     }
   },
