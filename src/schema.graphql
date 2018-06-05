@@ -149,4 +149,5 @@ type Mutation {
     billing: BillingAddress!
     shipping: ShippingAddress
   ): Order
+  stripeTokenPayment(orderId: ID!, token: String!): Order
 }
