@@ -7,9 +7,19 @@ export default {
         payment,
       })
 
-      const { data: order } = await Moltin.Orders.Get(orderId)
+      const getOrder = Moltin.Orders.Get(orderId)
+      const getOrderItems = Moltin.Orders.Items(orderId)
 
-      return order
+      const [{ data: { id, ...rest } }, { data: items }] = await Promise.all([
+        getOrder,
+        getOrderItems,
+      ])
+
+      return {
+        id,
+        items,
+        ...rest,
+      }
     } catch (e) {
       return e
     }
